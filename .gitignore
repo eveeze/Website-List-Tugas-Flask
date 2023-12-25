@@ -1,0 +1,28 @@
+# Virtual environment
+venv/
+.env/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE files
+.vscode/
+.idea/
+
+# OS or editor generated files
+.DS_Store
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sql
+
+# Environment variables
+.env
+
+# Dependencies (if using pipenv)
+Pipfile
+Pipfile.lock

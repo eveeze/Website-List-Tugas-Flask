@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Tugas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+       body {
+            font-family: 'Oswald', sans-serif;
+            background-color: #31304D; 
+            padding-top: 60px;
+            color: #F0ECE5; 
+            /*background-image: url("{{ url_for('static', filename='assets/tahu.jpg') }}");*/
+            background-size: cover; 
+            background-position: center; 
+        }
+        
+        .btn {
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #31304D;
+            border-color: #31304D;
+        }
+        .btn-primary:hover {
+            background-color: #161A30;
+        }
+
+
+        .form-control {
+            flex: 1;
+            margin-right: 5px; /* Atur margin kanan untuk input */
+            width: auto; /* Isi ruang tersedia */
+        }
+
+        .btn-outline-success {
+            flex-shrink: 0;
+        }
+        .list-group-item {
+            border: 1px solid #B6BBC4;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #B6BBC4; 
+            color: #000000; 
+        }
+        .list-group-item:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .btn-tambah {
+            background-color: #F0ECE5; 
+            color: #161A30; 
+        }
+        .list-group-item div {
+            padding: 10px;
+        }
+        .edit-delete-btns {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .container {
+            max-width: 1200px;
+        }
+
+        /* Atur lebar kolom */
+        .list-group-item .col-lg-8 {
+            flex: 0 0 60%;
+        }
+
+        .list-group-item .col-lg-2 {
+            flex: 0 0 15%;
+        }
+
+        .list-group-item .col-lg-2.text-end.edit-delete-btns {
+            flex: 0 0 25%;
+        }
+        .edit-delete-btns .btn {
+        margin-top: 5px;
+        }
+        .user-info-tooltip {
+        position: absolute;
+        background: #161A30;
+        color: #F0ECE5;
+        padding: 10px;
+        border-radius: 8px;
+        z-index: 1;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .text-muted {
+            color: #F0ECE5 !important ;
+        }
+        
+        .beranda-section {
+            padding-top: 100px;
+            padding-left: 50px;
+            max-width: 1175px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        #tugas {
+            margin-bottom: 100px; /* Sesuaikan dengan tinggi footer */
+        }
+        /* Atur ukuran font tombol pada layar yang lebih kecil */
+        @media (max-width: 992px) {
+            /* Perubahan pada tombol untuk ukuran layar 992px ke bawah */
+            .edit-delete-btns .btn {
+                padding: 0.2rem 0.5rem; 
+                font-size: 0.75rem;
+            }
+            .beranda-section {
+                padding-top: 50px;
+                padding-left: 20px;
+                max-width: 100%;
+                height: auto;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        /* Atur tata letak kolom untuk ukuran layar yang lebih kecil */
+        @media (max-width: 768px) {
+            /* Kolom dengan ukuran layar 768px ke bawah menjadi 100% */
+            .list-group-item .col-lg-8,
+            .list-group-item .col-lg-2,
+            .list-group-item .col-lg-2.text-end.edit-delete-btns {
+                flex: 0 0 100%;
+            }
+            /* Perubahan pada tombol untuk ukuran layar 768px ke bawah */
+            .edit-delete-btns .btn {
+                margin-top: 5px;
+                padding: 0.2rem 0.5rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Atur tata letak kolom untuk ukuran layar yang lebih kecil lagi */
+        @media (max-width: 576px) {
+            /* Hilangkan margin bawah pada kolom untuk ukuran layar 576px ke bawah */
+            .list-group-item .col-lg-8,
+            .list-group-item .col-lg-2,
+            .list-group-item .col-lg-2.text-end.edit-delete-btns {
+                margin-bottom: 0;
+            }
+            /* Perubahan pada tombol untuk ukuran layar 576px ke bawah */
+            .edit-delete-btns .btn {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+{% include 'navbar.html' %}
+    
+<div class="container">
+    <section class="beranda-section">
+        <div class="content-wrapper">
+            <div class="text-content p-4 m-5">
+                <h2 id="greeting">Selamat datang!</h2>
+                <h2 class="username">Selamat datang di Web List Tugas, {{ current_user.username }}</h2>
+                <p class="pt-2">Anda memiliki {{ task_count }} tugas</p>
+                <p>Jumlah Tugas yang sudah selesai {{ completed_task_count }}</p>
+            </div>
+        </div>
+    </section>
+</div>
+    
+    <div class="container mt-5 " id="tugas">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4" >Daftar Tugas</h2>
+                <!-- Bootstrap Alert -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+                <section>
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                        {% if tasks %}
+                            {% for task in tasks %}
+                                <div class="col-md-6">
+                                    <div class="list-group-item">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-9">
+                                                <h5>{{ task.title }}</h5>
+                                                <p>{{ task.description }}</p>
+                                                <p class="w-50">Deadline: {{ task.deadline.strftime('%Y-%m-%d %H:%M') }}</p>
+                                            </div>
+                                            <div class="col-lg-3 text-end">
+                                                <span class="badge bg-primary rounded-pill">{{ task.priority }}</span>
+                                                <div class="edit-delete-btns">
+                                                    <a href="{{ url_for('edit_task', task_id=task.id) }}" class="btn btn-primary btn-sm me-2">Edit</a>
+                                                    <form action="{{ url_for('delete_task', task_id=task.id) }}" method="post" class="d-inline">
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus tugas ini?')">Delete</button>
+                                                    </form>
+                                                    {% if not task.is_completed %}
+                                                        <form action="{{ url_for('complete_task', task_id=task.id) }}" method="post" class="d-inline ms-2">
+                                                            <button type="submit" class="btn btn-success btn-sm">Selesai</button>
+                                                        </form>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted">Tidak ada tugas.</p>
+                        {% endif %}
+                    </div>
+                </section>
+                
+                </div class="col-md-6">
+                <div class="container mx-auto text-center">
+                <a href="{{ url_for('add_task') }}" class="btn btn-primary mt-4 text-center btn-tambah">Tambah Tugas Baru</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+
+   <script>
+        var currentTime = new Date().getHours();
+        var greeting;
+
+        if (currentTime >= 5 && currentTime < 12) {
+            greeting = "Selamat pagi";
+        } else if (currentTime >= 12 && currentTime < 18) {
+            greeting = "Selamat siang";
+        } else {
+            greeting = "Selamat malam";
+        }
+        document.getElementById("greeting").innerText = greeting + "!";
+    </script>
+</body>
+</html>
