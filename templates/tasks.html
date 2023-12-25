@@ -124,15 +124,12 @@
             }
         }
 
-        /* Atur tata letak kolom untuk ukuran layar yang lebih kecil */
         @media (max-width: 768px) {
-            /* Kolom dengan ukuran layar 768px ke bawah menjadi 100% */
             .list-group-item .col-lg-8,
             .list-group-item .col-lg-2,
             .list-group-item .col-lg-2.text-end.edit-delete-btns {
                 flex: 0 0 100%;
             }
-            /* Perubahan pada tombol untuk ukuran layar 768px ke bawah */
             .edit-delete-btns .btn {
                 margin-top: 5px;
                 padding: 0.2rem 0.5rem;
@@ -140,15 +137,12 @@
             }
         }
 
-        /* Atur tata letak kolom untuk ukuran layar yang lebih kecil lagi */
         @media (max-width: 576px) {
-            /* Hilangkan margin bawah pada kolom untuk ukuran layar 576px ke bawah */
             .list-group-item .col-lg-8,
             .list-group-item .col-lg-2,
             .list-group-item .col-lg-2.text-end.edit-delete-btns {
                 margin-bottom: 0;
             }
-            /* Perubahan pada tombol untuk ukuran layar 576px ke bawah */
             .edit-delete-btns .btn {
                 padding: 0.2rem 0.4rem;
                 font-size: 0.7rem;
@@ -176,7 +170,6 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <h2 class="text-center mb-4" >Daftar Tugas</h2>
-                <!-- Bootstrap Alert -->
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% for category, message in messages %}
                         <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">

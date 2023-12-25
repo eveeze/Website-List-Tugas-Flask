@@ -79,7 +79,7 @@
             transform: translateY(-50%);
             transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             opacity: 0;
-            border: 1px solid red; /* Ubah border tombol delete menjadi red */
+            border: 1px solid red; 
         }
 
         .list-group-item:hover .delete-task {
@@ -129,18 +129,15 @@
     {% include 'footer.html' %}
 
     <script>
-        // JavaScript
         const deleteTaskElements = document.querySelectorAll('.delete-task');
     
         deleteTaskElements.forEach((deleteElement) => {
             deleteElement.addEventListener('click', () => {
                 const taskId = deleteElement.getAttribute('data-task-id');
-                // Use `taskId` to create URL using url_for
                 const deleteURL = "{{ url_for('delete_task', task_id=0) }}".replace('0', taskId);
     
-                // Here, you can perform an action with deleteURL, for example:
                 fetch(deleteURL, {
-                    method: 'DELETE' // or 'POST', 'PUT', etc. depending on your route configuration
+                    method: 'DELETE' 
                 }).then(response => {            
                     if (response.ok) {
                         const listItem = deleteElement.parentElement;

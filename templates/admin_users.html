@@ -8,12 +8,12 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #161A30; /* Warna latar belakang halaman */
-            color: #F0ECE5; /* Warna teks utama */
+            background-color: #161A30; 
+            color: #F0ECE5; 
         }
 
         .navbar {
-            background-color: #161A30; /* Warna latar belakang navbar */
+            background-color: #161A30; 
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding-top: 15px;
             padding-bottom: 15px;
@@ -21,40 +21,40 @@
 
         .navbar-brand {
             font-weight: bold;
-            color: #F0ECE5; /* Warna teks pada navbar */
+            color: #F0ECE5; 
         }
 
         .container {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             padding: 30px;
-            background-color: #31304D; /* Warna latar belakang container */
+            background-color: #31304D; 
         }
 
         h1 {
             margin-bottom: 30px;
-            color: #F0ECE5; /* Warna teks pada judul */
+            color: #F0ECE5; 
         }
 
         .card {
-            background-color: #31304D; /* Warna latar belakang card */
-            color: #F0ECE5; /* Warna teks pada card */
+            background-color: #31304D; 
+            color: #F0ECE5; 
             margin-bottom: 20px;
         }
 
         .card:hover {
-            background-color: #B6BBC4; /* Warna latar belakang card saat dihover */
-            color: #161A30; /* Warna teks pada card saat dihover */
+            background-color: #B6BBC4; 
+            color: #161A30; 
         }
 
         .card-header {
-            background-color: #31304D; /* Warna latar belakang header card */
+            background-color: #31304D; 
             border-bottom: none;
-            color: #F0ECE5; /* Warna teks pada header card */
+            color: #F0ECE5; 
         }
 
         .card-body {
-            border-top: 1px solid #B6BBC4; /* Warna border atas pada card body */
+            border-top: 1px solid #B6BBC4; 
         }
 
         .card-body p {
@@ -62,12 +62,12 @@
         }
 
         .navbar-text {
-            color: #F0ECE5; /* Warna teks pada teks navbar */
+            color: #F0ECE5; 
             font-weight: bold;
         }
 
         .navbar-nav .nav-link {
-            color: #F0ECE5; /* Warna teks pada link navbar */
+            color: #F0ECE5; 
             font-weight: bold;
         }
         @keyframes fade-in {
@@ -88,7 +88,7 @@
             to {
                 opacity: 0;
                 visibility: hidden;
-                transform: translateY(-10px); /* Mengembalikan posisi */
+                transform: translateY(-10px); 
             }
         }
 
@@ -109,12 +109,10 @@
 
 
         .alert {
-            /* Terapkan animasi */
             animation: fade-in 0.5s ease-in-out, fade-out 0.5s ease-in-out 1.5s forwards;
-            background-color: #5cb85c; /* Warna latar belakang hijau */
-            color: white; /* Warna teks putih */
+            background-color: #5cb85c; 
+            color: white; 
         }
-        /* Mengatur durasi fade-out */
         .alert.fade-out {
             animation: fade-out 0.5s ease-in-out forwards;
         }
@@ -122,7 +120,6 @@
             padding: 10px 20px;
         }
 
-        /* Responsiveness for logout button */
         @media (max-width: 768px) {
             .logout-btn {
                 padding: 5px 10px;
@@ -152,7 +149,6 @@
 
     <!-- Container -->
     <div class="container mt-4">
-        <!-- Flash Messages -->
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <div class="alert alert-dismissible fade show" role="alert">
@@ -164,7 +160,6 @@
         </div>
         {% endif %}
         {% endwith %}
-        <!-- Title -->
         <h1 class="text-center mb-4">Daftar Pengguna</h1>
 
         <!-- User List -->

@@ -56,12 +56,12 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        confirm_password = request.form['confirm_password']  # Ambil nilai konfirmasi password
+        confirm_password = request.form['confirm_password'] 
         existing_user = User.query.filter_by(username=username).first()
 
         if existing_user:
             flash('Username sudah digunakan.', 'danger')
-        elif password != confirm_password:  # Periksa apakah password sama dengan konfirmasi password
+        elif password != confirm_password: 
             flash('Konfirmasi password tidak cocok.', 'danger')
         else:
             new_user = User(username=username, password=password)
@@ -216,11 +216,11 @@ def change_password():
 
         user = User.query.filter_by(username=username).first()
 
-        if user and user.password == old_password:  # Validasi password lama
-            user.password = new_password  # Ubah kata sandi ke yang baru
+        if user and user.password == old_password:  
+            user.password = new_password 
             db.session.commit()
             flash('Password changed successfully!', 'success')
-            return redirect(url_for('login'))  # Redirect ke halaman login setelah perubahan
+            return redirect(url_for('login')) 
 
         flash('Invalid username or old password', 'danger')
 

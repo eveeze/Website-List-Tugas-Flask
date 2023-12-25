@@ -15,16 +15,12 @@ class User(db.Model, UserMixin):
         return self.is_admin
 
     def is_authenticated(self):
-        # Logika untuk menentukan apakah pengguna diautentikasi
         return True if self.id is not None else False
 
     def is_active(self):
-        # Logika untuk menentukan apakah pengguna aktif
-        return True  # Anda dapat menambahkan logika tambahan jika diperlukan
-
+        return True  
     def is_anonymous(self):
-        # Logika untuk menentukan apakah pengguna anonim
-        return False  # Karena kita menggunakan otentikasi, pengguna tidak anonim
+        return False 
 
     def get_id(self):
         return str(self.id)
