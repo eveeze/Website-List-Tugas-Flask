@@ -194,6 +194,7 @@ def delete_user(user_id):
         user_to_delete = User.query.get_or_404(user_id)
         if user_to_delete:
             try:
+                Task.query.filter_by(user_id=user_id).delete()
                 db.session.delete(user_to_delete)
                 db.session.commit()
                 flash('Pengguna berhasil dihapus.', 'success')
